@@ -18,9 +18,12 @@ class Buy extends Component {
 
     return (
       <Mutation mutation={MakeOfferMutation}>
-        {makeOffer => (
-          <button onClick={() => makeOffer({ variables })}>Buy</button>
-        )}
+        {(makeOffer, { error }) => {
+          if (error) alert(error.message)
+          return (
+            <button onClick={() => makeOffer({ variables })}>Buy</button>
+          )
+        }}
       </Mutation>
     );
   }

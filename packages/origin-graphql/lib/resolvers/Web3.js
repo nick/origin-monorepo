@@ -26,6 +26,10 @@ export default {
   },
   metaMaskAvailable: (_, args, context) => context.contracts.metaMask ? true : false,
   metaMaskEnabled: (_, args, context) => context.contracts.metaMaskEnabled,
+  metaMaskNetwork: async (_, args, context) => {
+    if (!context.contracts.metaMask) { return null }
+    return await context.contracts.metaMask.eth.net.getId()
+  },
   metaMaskAccount: async (_, args, context) => {
     if (!context.contracts.metaMask) return null
     const accounts = await context.contracts.metaMask.eth.getAccounts()

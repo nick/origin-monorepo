@@ -6,6 +6,10 @@ import Buy from "./Buy";
 
 const ListingsQuery = gql`
   {
+    web3 {
+      metaMaskEnabled
+      metaMaskNetwork
+    }
     marketplace {
       allListings {
         id
@@ -23,12 +27,13 @@ const ListingsQuery = gql`
 
 const Listings = () => (
   <Query query={ListingsQuery}>
-    {({ loading, data }) => (
-      <div>
-        <h2>Origin Listings</h2>
-        {loading ? (
-          "Loading..."
-        ) : (
+    {({ loading, data }) => {
+      if (loading) return "Loading..."
+      if (!data || !data.web3.metaMaskEnabled) return "Please enable MetaMask"
+      if (data.web3.metaMaskNetwork !== "1") return "Please set MetaMask to Mainnet"
+      return (
+        <div>
+          <h2>Origin Listings</h2>
           <table>
             <tbody>
               {data.marketplace.allListings.map(({ id, ipfs }) => (
@@ -42,9 +47,9 @@ const Listings = () => (
               ))}
             </tbody>
           </table>
-        )}
-      </div>
-    )}
+        </div>
+      );
+    }}
   </Query>
 );
 

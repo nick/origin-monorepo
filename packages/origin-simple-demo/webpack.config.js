@@ -43,7 +43,7 @@ var config = {
       'Access-Control-Allow-Origin': '*'
     }
   },
-  mode: "production",
+  mode: process.env.NODE_ENV === 'production' ? 'production' : "development",
   plugins: []
 };
 

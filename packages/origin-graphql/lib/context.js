@@ -173,7 +173,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'CSS') {
   window.context = context
   if (window.web3) {
     metaMask = new Web3(web3.currentProvider)
-    metaMaskEnabled = window.localStorage.metaMaskEnabled ? true : false
+    metaMaskEnabled = true // window.localStorage.metaMaskEnabled ? true : false
   }
 
   Configs.localhost.OriginToken = window.localStorage.OGNContract

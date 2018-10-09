@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "webpack --progress"
+    "build": "NODE_ENV=production webpack --progress"
   },
   "dependencies": {
     "origin-graphql": "^0.1.0"

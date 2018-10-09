@@ -104,6 +104,7 @@ export default `
     metaMaskAvailable: Boolean
     metaMaskEnabled: Boolean
     metaMaskAccount: Account
+    metaMaskNetwork: String
   }
 
   type Price {
